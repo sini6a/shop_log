@@ -5,6 +5,10 @@ Completely written in bash
 - grep
 
 Things to complete:
+- printer support
+- ...
+
+Completed:
 - universal search (case insensitive)
 - ...
 
