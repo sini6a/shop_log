@@ -11,7 +11,7 @@ NC='\033[0m'
 # Center otuput
 center() {
   termwidth="$(($(tput cols)-2))"
-  padding="$(printf '%0.1s' -{1..500})"
+  padding="$(printf '%0.1s' ={1..500})"
   printf -- '%*.*s> %s <%*.*s\n' 0 "$(((termwidth-2-${#1})/2))" "$padding" "$1" 0 "$(((termwidth-1-${#1})/2))" "$padding"
 }
 
@@ -33,15 +33,15 @@ COLS="(($(tput cols)/2))"
 
 calculate_lines() {
 if [ "$(grep -c "$keyword" $DIR/logs.dat)" -gt 0 ]; then
-    if [ "$(grep -i "$keyword" $DIR/logs.dat | grep -c "Дата")" -gt 0 ]; then
+    if [ "$(grep -i "$keyword" $DIR/logs.dat | grep -c -i "Дата")" -gt 0 ]; then
     before='1'
     after='8'
     fi
-    if [ "$(grep -i "$keyword" $DIR/logs.dat | grep -c "Име")" -gt 0 ]; then
+    if [ "$(grep -i "$keyword" $DIR/logs.dat | grep -c -i "Име")" -gt 0 ]; then
     before='2'
     after='7'
     fi
-    if [ "$(grep -i "$keyword" $DIR/logs.dat | grep -c "Локација")" -gt 0 ]; then
+    if [ "$(grep -i "$keyword" $DIR/logs.dat | grep -c -i "Локација")" -gt 0 ]; then
     before='3'
     after='6'
     fi

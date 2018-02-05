@@ -26,6 +26,12 @@ user_inputs() {
     read -p "-> Внесете модел: " model
     read -p "-> Внесете цена (во $cur): " price
     read -p "-> Дефект: " other
+    read -n 1 -r -p "-> Платено? (y/n): "
+    if [[ $REPLY =~ [Yy]$ ]]; then
+    paid="Да"
+    else
+    paid="Не"
+    fi
 }
 
 print_confirm() {
@@ -36,7 +42,8 @@ local final_confirm="--> Дата: ${GREEN}$date_format${NC}
 --> Производител: ${RED}${manuf^^}${NC}
 --> Модел: ${RED}${model^^}${NC}
 --> Цена: ${RED}$price ${BLUE}${cur,,}${NC}.
---> Дефект: ${RED}${other^^}${NC}"
+--> Дефект: ${RED}${other^^}${NC}
+--> Платено: ${RED}${paid^}${NC}"
 echo -e "$final_confirm"
 }
 
