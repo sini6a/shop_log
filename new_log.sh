@@ -27,7 +27,7 @@ user_inputs() {
     read -p "-> Внесете цена (во $cur): " price
     read -p "-> Дефект: " other
     read -n 1 -r -p "-> Платено? (y/n): "
-    if [[ $REPLY =~ [Yy]$ ]]; then
+    if [[ $REPLY =~ [YyДд]$ ]]; then
     paid="Да"
     else
     paid="Не"
@@ -64,7 +64,7 @@ echo -e "${BLUE}-> Дали сте сигурни? (y/n) ${NC}"
 read -n 1 -r
 echo
 
-if [[ $REPLY =~ [Yy]$ ]]
+if [[ $REPLY =~ [YyДд]$ ]]
 then
 confirmed=$(print_confirm)
 echo -e "$confirmed" >> $DIR/logs.dat || sleep infinity
@@ -72,5 +72,18 @@ echo -e "$confirmed" >> $DIR/logs.dat || sleep infinity
 notify-send "Успешно внесен запис"
 echo -e "${GREEN}--> Успешно внесен запис${NC}"
 echo "" >> $DIR/logs.dat
+# sleep 3
+fi
+
+# FOR PRINTING To PDF
+echo -e "${BLUE}-> Дали сакате да испечатите? (y/n) ${NC}"
+read -n 1 -r
+echo
+
+if [[ $REPLY =~ [YyДд]$ ]]
+then
+echo -e "$confirmed" | lpr -P pdf
+## send some notification ##
+echo -e "${GREEN}--> Ispecateno${NC}"
 sleep 3
 fi
